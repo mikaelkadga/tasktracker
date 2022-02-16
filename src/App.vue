@@ -1,26 +1,68 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="wrapper">
+    <div class="container">
+      <Header :showAddTask="showAddTask" @toggle-add-task="toggleAddTask" title="what am i gonna do" />
+      <router-view :showAddTask="showAddTask"></router-view>
+      <Footer />
+    </div>
+</div>
+  
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Header from './components/Header.vue'
+import Footer from './components/Footer.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Header,
+    Footer
+  },
+  data () {
+    return {
+      showAddTask: false
+    }
+  },
+  methods: {
+    toggleAddTask () {
+      this.showAddTask = !this.showAddTask
+    }
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+.wrapper {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.container {
+  font-size: 14px;
+  width: 25em;
+  margin: 2em auto;
+  padding: 1.3em;
+  border: 1px solid black;
+  border-radius: 0.3em;
+}
+
+@media (min-width:800px) {
+  .container {
+    width: 32em
+  }
 }
 </style>
