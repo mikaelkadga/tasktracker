@@ -1,8 +1,8 @@
 <template>
     <header>
-        <h2>
-        {{title}}
-        </h2>
+        <router-link to="/" class="title">
+            {{title}}
+        </router-link>
         <Button 
         v-show="homePage" 
         @btn-click="$emit('toggle-add-task')" 
@@ -40,5 +40,11 @@ header {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 2em;
+}
+
+.title {
+    text-decoration: none;
+    color: black;
+    font-size: 1.5em;
 }
 </style>

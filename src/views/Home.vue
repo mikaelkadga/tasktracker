@@ -1,6 +1,6 @@
 <template>
     <AddTask @add-task="addTask" v-show="showAddTask"/>
-    <Tasks @delete-task="deleteTask" :tasks="tasks"/>
+    <Tasks @delete-task="deleteTask" @edit-task="editTask" :tasks="tasks"/>
 </template>
 
 <script>
@@ -43,9 +43,13 @@ export default {
                 res.status === 200 ? (this.tasks = this.tasks.filter((task) => task.id !== id)) : alert('error deleting task')
             }   
         },
+        editTask (id) {
+            console.log(id)
+        },
         async fetchTasks() {
             const res = await fetch('api/tasks')
             const data = await res.json()
+            // console.log(data)
             return data
         },
         async fetchTask(id) {
@@ -56,6 +60,7 @@ export default {
     },
     async created () {
         this.tasks = await this.fetchTasks()
+        console.log(this.tasks)
     }
 }
 </script>

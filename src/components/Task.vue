@@ -8,7 +8,7 @@
         {{task.day}}
     </p>
     </div>
-    <p class="edit">edit</p>
+    <router-link :to="`/edit/${task.id}`" class="edit">edit</router-link>
     <i @click="$emit('delete-task', task.id)" class="fas fa-solid fa-trash"></i>
   </div>
 </template>
@@ -59,6 +59,11 @@ export default {
 .fas {
   font-size: 0.9em;
   cursor: pointer;
+}
+
+.edit {
+    color: black;
+    text-decoration: none;
 }
 
 </style>
