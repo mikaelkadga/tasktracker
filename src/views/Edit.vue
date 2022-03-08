@@ -16,18 +16,18 @@ export default {
         EditTask
     },
     methods: {
-        // fetchTask(id) {
-        //     fetch(`api/tasks/${id}`)
-        //         .then(response => response.json())
-        //         .then(res => {
-        //             this.currentData = res
-        //         })
-        // }
+        fetchTask(id) {
+            fetch(`api/tasks/${id}`)
+                .then(response => response.json())
+                .then(res => {
+                    this.currentData = res
+                })
+        }
     },
-    // async mounted () {
-    //     await this.fetchTask (this.$route.params.id)
-    //     console.log(this.currentData)
-    // }
+    async mounted () {
+        await this.fetchTask (this.$route.params.id)
+        console.log(this.currentData)
+    }
 }
 </script>
 
