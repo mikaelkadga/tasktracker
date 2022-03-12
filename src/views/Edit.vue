@@ -9,24 +9,25 @@ export default {
     inheritAttrs: false,
     data () {
         return {
-            currentData: []
+            currentData: null
         }
     },
     components: {
         EditTask
     },
     methods: {
-        fetchTask(id) {
-            fetch(`api/tasks/${id}`)
-                .then(response => response.json())
-                .then(res => {
-                    this.currentData = res
-                })
+        async fetchTask(id) {
+            const res = await fetch(`api/tasks/${id}`)
+            console.log('response:', res)
+            const data = await res.json()
+            console.log(data)
+            return data
         }
     },
     async mounted () {
-        await this.fetchTask (this.$route.params.id)
-        console.log(this.currentData)
+        console.log(this.$route.params.id)
+        this.currentData = await this.fetchTask(1)
+        // console.log(this.currentData)
     }
 }
 </script>

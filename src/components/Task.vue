@@ -8,7 +8,7 @@
         {{task.day}}
     </p>
     </div>
-    <router-link :to="`/edit/${task.id}`" class="edit">edit</router-link>
+    <!-- <router-link :to="`/edit/${task.id}`" class="edit">edit</router-link> -->
     <i @click="$emit('delete-task', task.id)" class="fas fa-solid fa-trash"></i>
   </div>
 </template>
@@ -29,10 +29,12 @@ export default {
     display: grid;
     align-items: center;
     justify-items: center;
-    grid-template-columns: 2fr 1fr 0.5fr;
+    /* grid-template-columns: 2fr 1fr 0.5fr; */
+    grid-template-columns: 1fr 1fr;
     background-color: rgb(226, 221, 221);
     margin-bottom: 1em;
     padding: 1em;
+    padding-right: 2em;
     border-radius: 0.8em;
     /* cursor: pointer; */
 }
@@ -50,15 +52,16 @@ export default {
     justify-self: start;
 }
 
-.edit {
+/* .edit {
     justify-self: center;
     font-size: 0.9em;
     cursor: pointer;
-}
+} */
 
 .fas {
   font-size: 0.9em;
   cursor: pointer;
+  justify-self: end;
 }
 
 .edit {
