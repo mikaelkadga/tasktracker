@@ -1,5 +1,12 @@
 <template>
-  <div class="wrapper">
+  <div :class="theme === 'light' ? 'light-theme' : 'dark-theme'" class="wrapper">
+    <div>
+      <div @click="changeTheme" class="dark-mode">
+        <i class="bi bi-moon-fill moon"></i>
+        <i class="bi bi-brightness-high-fill sun"></i>
+        <i class="ball"></i>
+      </div>
+    </div>
     <div class="container">
       <Header :showAddTask="showAddTask" @toggle-add-task="toggleAddTask" title="what am i gonna do" />
       <router-view :showAddTask="showAddTask"></router-view>
@@ -21,12 +28,18 @@ export default {
   },
   data () {
     return {
-      showAddTask: false
+      showAddTask: false,
+      theme: "light"
     }
   },
   methods: {
     toggleAddTask () {
       this.showAddTask = !this.showAddTask
+    },
+    changeTheme () {
+      console.log("changing theme")
+      this.theme = this.theme === "dark" ? "light" : "dark"
+      console.log(this.theme)
     }
   }
 }
@@ -34,6 +47,7 @@ export default {
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css");
 
 * {
   box-sizing: border-box;
@@ -48,7 +62,9 @@ body {
 .wrapper {
   height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .container {
@@ -58,6 +74,53 @@ body {
   padding: 1.3em;
   border: 1px solid black;
   border-radius: 0.3em;
+}
+
+.dark-mode {
+  width: 60px;
+  height: 30px;
+  padding: 0.5em;
+  background-color: black;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  cursor: pointer;
+}
+
+.transform {
+  transform: translateX(25px);
+}
+
+.moon {
+  color: white;
+  /* cursor: pointer; */
+}
+
+.sun {
+  color: orange;
+  /* cursor: pointer; */
+}
+
+.ball {
+  height: 20px;
+  width: 20px;
+  background-color: white;
+  border-radius: 50%;
+  position: absolute;
+  cursor: pointer;
+}
+
+.light-theme {
+  background-color: white;
+  color: black;
+}
+
+.dark-theme {
+  background-color: black;
+  color: white;
+  border-color: white;
 }
 
 @media (min-width:800px) {
