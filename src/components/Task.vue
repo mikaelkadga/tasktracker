@@ -1,5 +1,5 @@
 <template>
-  <div class="tasks">
+  <div class="tasks" :class="theme !== 'light' ? 'tasks-dark' : ''">
     <div class="task">
     <p class="text">
         {{task.text}}
@@ -19,7 +19,8 @@ export default {
         
     },
     props: {
-        task: Object
+        task: Object,
+        theme: String
     }
 }
 </script>
@@ -31,12 +32,17 @@ export default {
     justify-items: center;
     /* grid-template-columns: 2fr 1fr 0.5fr; */
     grid-template-columns: 1fr 1fr;
-    background-color: rgb(226, 221, 221);
+    /* background-color: rgb(226, 221, 221); */
     margin-bottom: 1em;
     padding: 1em;
     padding-right: 2em;
     border-radius: 0.8em;
+    border: 1px solid black;
     /* cursor: pointer; */
+}
+
+.tasks-dark {
+    border: 1px solid white;
 }
 
 .text {

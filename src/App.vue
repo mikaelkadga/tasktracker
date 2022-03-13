@@ -1,15 +1,15 @@
 <template>
   <div :class="theme === 'light' ? 'light-theme' : 'dark-theme'" class="wrapper">
     <div>
-      <div @click="changeTheme" class="dark-mode">
+      <div @click="changeTheme" class="theme-toggle">
         <i class="bi bi-moon-fill moon"></i>
         <i class="bi bi-brightness-high-fill sun"></i>
-        <i class="ball"></i>
+        <i class="ball" :class="theme === 'light' ? 'ball-dark' : ''"></i>
       </div>
     </div>
-    <div class="container">
-      <Header :showAddTask="showAddTask" @toggle-add-task="toggleAddTask" title="what am i gonna do" />
-      <router-view :showAddTask="showAddTask"></router-view>
+    <div class="container" :class="theme === 'light' ? '' : 'container-dark'">
+      <Header :theme="theme" :showAddTask="showAddTask" @toggle-add-task="toggleAddTask" title="what am i gonna do" />
+      <router-view :theme="theme" :showAddTask="showAddTask"></router-view>
       <Footer />
     </div>
 </div>
@@ -76,7 +76,11 @@ body {
   border-radius: 0.3em;
 }
 
-.dark-mode {
+.container-dark {
+  border: 1px solid white;
+}
+
+.theme-toggle {
   width: 60px;
   height: 30px;
   padding: 0.5em;
@@ -87,10 +91,6 @@ body {
   justify-content: space-between;
   position: relative;
   cursor: pointer;
-}
-
-.transform {
-  transform: translateX(25px);
 }
 
 .moon {
@@ -110,17 +110,23 @@ body {
   border-radius: 50%;
   position: absolute;
   cursor: pointer;
+  transition: 300ms;
+}
+
+.ball-dark {
+  transform: translateX(25px);
 }
 
 .light-theme {
-  background-color: white;
+  background-color: rgb(245, 239, 239);
   color: black;
+  transition: 300ms;
 }
 
 .dark-theme {
-  background-color: black;
+  background-color: #192734;
   color: white;
-  border-color: white;
+  transition: 300ms;
 }
 
 @media (min-width:800px) {

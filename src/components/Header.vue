@@ -1,6 +1,6 @@
 <template>
     <header>
-        <router-link to="/" class="title">
+        <router-link to="/" class="title" :class="theme === 'dark' ? 'title-dark' : ''">
             {{title}}
         </router-link>
         <Button 
@@ -20,7 +20,8 @@ export default {
     },
     props: {
         title: String,
-        showAddTask: Boolean
+        showAddTask: Boolean,
+        theme: String
     },
     computed: {
         homePage () {
@@ -46,5 +47,9 @@ header {
     text-decoration: none;
     color: black;
     font-size: 1.5em;
+}
+
+.title-dark {
+    color: white;
 }
 </style>

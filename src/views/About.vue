@@ -14,7 +14,7 @@ export default {
 
 <style scoped>
 .back {
-    color: black;
+    color: #333;
 }
 
 </style>
